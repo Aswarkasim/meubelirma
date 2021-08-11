@@ -1,0 +1,10 @@
+.text-secondary {
+	color: #f4a261 !important;
+}
+
+
+.btn-secondary {
+	color: #fff;
+	background-color: #f4a261;
+	border-color: #f4a261;
+}
