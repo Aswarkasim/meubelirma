@@ -3,7 +3,7 @@
 
   <div class="row">
     <div class="col-md-4">
-      <img src="<?= base_url('assets/img/help.jpg'); ?>" width="100%" alt="">
+      <img src="<?= base_url($produk->gambar); ?>" width="100%" alt="">
     </div>
 
     <div class="col-md-8">
@@ -14,8 +14,20 @@
       <p>
       <h4><?= 'Rp. ' . $produk->harga ?></h4>
       </p>
-      <a href="" class="btn btn-primary"><i class="fa fa-cart-plus"></i> Tambah ke keranjang</a>
-      <a href="" class="btn btn-secondary"><i class="fa fa-inbox"></i> Order</a>
+      <?php if ($this->session->userdata('role') !== 'Pemasok') {
+        if (!$cekKeranjang) {
+      ?>
+          <div class="d-grid gap-2">
+            <a href="<?= base_url('home/cart/addToCart/detail/' . $produk->id_produk); ?>" class="btn btn-primary"><i class="fa fa-cart-plus mx-1"></i> Tambah ke keranjang</a>
+          </div>
+        <?php } else {
+        ?>
+          <small class="alert alert-success"><i class="fa fa-check"></i> Telah ditambahkan</small>
+      <?php
+        }
+      } ?>
+      <!-- <a href="" class="btn btn-primary"><i class="fa fa-cart-plus"></i> Tambah ke keranjang</a> -->
+      <!-- <a href="" class="btn btn-secondary"><i class="fa fa-inbox"></i> Order</a> -->
     </div>
   </div>
 </div>

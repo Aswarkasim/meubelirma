@@ -1,14 +1,16 @@
 <div class="flash-data" data-flashdata="<?= $this->session->flashdata('msg') ?>"></div>
 <div class="box">
     <div class="box-header">
-        <h3 class="box-title">Manajemen User</h3>
+        <h3 class="box-title"><?= strtoupper($title); ?></h3>
     </div>
     <!-- /.box-header -->
     <div class="box-body">
 
-        <p>
-            <a href="<?= base_url($add) ?>" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Tambah</a>
-        </p>
+        <?php if ($this->uri->segment(4) != 'user') { ?>
+            <p>
+                <a href="<?= base_url($add) ?>" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Tambah</a>
+            </p>
+        <?php } ?>
 
         <table class="table DataTable">
             <thead>
@@ -25,7 +27,7 @@
                     <tr>
                         <td><?= $no ?></td>
                         <td>
-                            <strong><?= $row->nama_user ?></strong><br>
+                            <strong><?= $row->username ?></strong><br>
                             <p><?= $row->email ?> - <?= $row->role ?></p>
                         </td>
                         <td><?php if ($row->is_active == 1) {
@@ -76,7 +78,7 @@
                         '<td>' + (i + 1) + '</td>' +
                         '<td><img width="50px" src="<?= base_url('assets/uploads/images/') ?>' + data[i].image + '" alt=""></td>' +
                         '<td>' +
-                        '<strong>' + data[i].nama_user + '</strong><br>' +
+                        '<strong>' + data[i].username + '</strong><br>' +
                         '<p>' + data[i].email + ' - ' + data[i].role + '</p>' +
                         '</td>' +
                         '<td><a href="<?php

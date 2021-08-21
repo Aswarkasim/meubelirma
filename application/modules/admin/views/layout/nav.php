@@ -55,40 +55,39 @@ $order = $this->AM->countOrder();
                                         ?>"><i class="fa fa-exchange"></i> <span>Pencatatan</span>
                 </a></li>
 
-            <!-- <li class="treeview <?php if ($this->uri->segment(2) == "transaksi") {
-                                            echo "active";
-                                        } ?>">
-                <a href="#"><i class="fa fa-edit"></i> <span>Pencatatan</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li class="<?php if ($this->uri->segment(2) == "pemasukan") {
-                                    echo "active";
-                                } ?>"><a href="<?= base_url('admin/pemasukan') ?>">Pemasukan</a></li>
-
-                    <li class="<?php if ($this->uri->segment(2) == "pengeluaran") {
-                                    echo "active";
-                                } ?>"><a href="<?= base_url('admin/pengeluaran') ?>">Pengeluaran</a></li>
-                </ul>
-            </li> -->
-
-
             <li class="treeview <?php if ($this->uri->segment(2) == "user") {
                                     echo "active";
                                 } ?>">
-                <a href="#"><i class="fa fa-user"></i> <span>Manajemen User</span>
+                <a href="#"><i class="fa fa-users"></i> <span>User</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="<?php if ($this->uri->segment(2) == "user") {
+                    <li class="<?php if ($this->uri->segment(4) == "pemasok") {
                                     echo "active";
-                                } ?>"><a href="<?= base_url('admin/user') ?>">List User</a></li>
+                                } ?>"><a href="<?= base_url('admin/user/index/pemasok') ?>">Pemasok</a></li>
+
+                    <li class="<?php if ($this->uri->segment(4) == "pembeli") {
+                                    echo "active";
+                                } ?>"><a href="<?= base_url('admin/user/index/pembeli') ?>">Pembeli</a></li>
+
+                    <li class="<?php if ($this->uri->segment(4) == "user") {
+                                    echo "active";
+                                } ?>"><a href="<?= base_url('admin/user/index/user') ?>">Pengguna</a></li>
+
                 </ul>
             </li>
+
+
+
+
+            <li class="<?php if ($this->uri->segment(2) == "admin") {
+                            echo "active";
+                        }
+                        ?>"><a href="<?php echo base_url('admin/admin')
+                                        ?>"><i class="fa fa-user-secret"></i> <span>Admin</span></a></li>
+
 
             <li class="<?php if ($this->uri->segment(2) == "konfigurasi") {
                             echo "active";

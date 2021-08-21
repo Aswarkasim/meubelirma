@@ -16,11 +16,48 @@ class Home_model extends CI_Model
 
   function listAll($table, $type, $limit, $offset)
   {
-    $query = $this->db->select('*')
+    $query = $this->db->select('tbl_produk.*, tbl_kategori.nama_kategori, tbl_user.namalengkap')
       ->from($table)
+      ->join('tbl_kategori', 'tbl_kategori.id_kategori = tbl_produk.id_kategori', 'left')
+      ->join('tbl_user', 'tbl_user.id_user = tbl_produk.id_user', 'left')
       ->limit($limit)
       ->offset($offset)
       ->where('type', $type)
+      ->get();
+    return $query->result();
+  }
+
+  function listByUser($table, $id_user, $limit, $offset)
+  {
+    $query = $this->db->select('tbl_produk.*, tbl_kategori.nama_kategori, tbl_user.namalengkap')
+      ->from($table)
+      ->join('tbl_kategori', 'tbl_kategori.id_kategori = tbl_produk.id_kategori', 'left')
+      ->join('tbl_user', 'tbl_user.id_user = tbl_produk.id_user', 'left')
+      ->where('tbl_produk.id_user', $id_user)
+      ->limit($limit)
+      ->offset($offset)
+      ->get();
+    return $query->result();
+  }
+  function listProductByKategori($type, $id_kategori)
+  {
+    $query = $this->db->select('tbl_produk.*, tbl_kategori.nama_kategori, tbl_user.namalengkap')
+      ->from('tbl_produk')
+      ->join('tbl_kategori', 'tbl_kategori.id_kategori = tbl_produk.id_kategori', 'left')
+      ->join('tbl_user', 'tbl_user.id_user = tbl_produk.id_user', 'left')
+      ->where('tbl_produk.id_kategori', $id_kategori)
+      ->where('tbl_produk.type', $type)
+      ->get();
+    return $query->result();
+  }
+
+  function listProductByPemasok($id_user, $id_kategori)
+  {
+    $query = $this->db->select('tbl_produk.*, tbl_kategori.nama_kategori')
+      ->from('tbl_produk')
+      ->join('tbl_kategori', 'tbl_kategori.id_kategori = tbl_produk.id_kategori', 'left')
+      ->where('tbl_produk.id_user', $id_user)
+      ->where('tbl_produk.id_kategori', $id_kategori)
       ->get();
     return $query->result();
   }
@@ -58,13 +95,16 @@ class Home_model extends CI_Model
   }
 
 
-  function listByUser($table, $id_user, $limit, $offset)
+
+
+
+
+  function listOrder($field, $id_user)
   {
     $query = $this->db->select('*')
-      ->from($table)
-      ->where('id_user', $id_user)
-      ->limit($limit)
-      ->offset($offset)
+      ->from('tbl_order')
+      ->where($field, $id_user)
+      ->order_by('date_created', 'DESC')
       ->get();
     return $query->result();
   }

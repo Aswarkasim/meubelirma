@@ -13,7 +13,7 @@
                 echo validation_errors('<div class="alert alert-warning"><i class="fa fa-warning"></i> ', '</div>');
                 ?>
 
-                <form action="<?= base_url($add) ?>" method="post">
+                <form action="<?= base_url($add . '/' . $this->uri->segment(4)) ?>" method="post">
 
                     <div class="form-group">
                         <div class="row">
@@ -21,7 +21,7 @@
                                 <label for="" class="pull-right">Nama</label>
                             </div>
                             <div class="col-md-9">
-                                <input type="text" name="nama_user" class="form-control">
+                                <input type="text" name="username" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <div class="row">
                             <div class="col-md-3">
                                 <label for="" class="pull-right">Role</label>
@@ -50,7 +50,7 @@
                                 </select>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-3">

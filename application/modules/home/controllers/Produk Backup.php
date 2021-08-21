@@ -32,7 +32,7 @@ class Produk extends CI_Controller
 
     $config['base_url']     = base_url('home/produk/index/');
     $config['total_rows']   = count($count);
-    $config['per_page']     = 12;
+    $config['per_page']     = 2;
 
     $from = $this->uri->segment(4);
     $this->pagination->initialize($config);
@@ -55,35 +55,11 @@ class Produk extends CI_Controller
     $this->load->view('home/layout/wrapper', $data, FALSE);
   }
 
-  function kategori($id_kategori)
-  {
-    $id_user = $this->session->userdata('id_user');
-    $kategori = $this->Crud_model->listing('tbl_kategori');
-    $role = $this->session->userdata('role');
-
-    if ($role === 'Pemasok') {
-      $produk = $this->HM->listProductByPemasok($id_user, $id_kategori);
-    } else if ($role === 'Pembeli') {
-      $produk = $this->HM->listProductByKategori('Pemasok', $id_kategori);
-    } else {
-      $produk = $this->HM->listProductByKategori('Umum', $id_kategori);
-    }
-    $data = [
-      'kategori'  => $kategori,
-      'produk'  => $produk,
-      'id_active' => $id_kategori,
-      'content'  => 'home/produk/index'
-    ];
-    $this->load->view('home/layout/wrapper', $data, FALSE);
-  }
   function detail($id_produk)
   {
-    $id_user = $this->session->userdata('id_user');
     $produk = $this->Crud_model->listingOne('tbl_produk', 'id_produk', $id_produk);
-    $cekKeranjang = $this->HM->cekKeranjang($id_user, $id_produk);
     $data = [
       'produk'   => $produk,
-      'cekKeranjang'   => $cekKeranjang,
       'content'  => 'home/produk/detail'
     ];
     $this->load->view('home/layout/wrapper', $data, FALSE);
@@ -94,6 +70,7 @@ class Produk extends CI_Controller
     $this->load->helper('string');
 
     $id_user = $this->session->userdata('id_user');
+
 
     $kategori = $this->Crud_model->listing('tbl_kategori');
 
@@ -131,6 +108,7 @@ class Produk extends CI_Controller
             'deskripsi'   => $i->post('deskripsi'),
             'harga'   => $i->post('harga'),
             'stok'   => $i->post('stok'),
+            'type'      =>  $this->session->userdata('role'),
             'gambar'          => $config['upload_path'] . $upload_data['uploads']['file_name']
           ];
           $this->Crud_model->add('tbl_produk', $data);

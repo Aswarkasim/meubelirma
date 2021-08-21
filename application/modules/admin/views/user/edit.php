@@ -21,7 +21,7 @@
                                 <label for="" class="pull-right">Nama</label>
                             </div>
                             <div class="col-md-9">
-                                <input value="<?= $user->nama_user ?>" type="text" name="nama_user" class="form-control">
+                                <input value="<?= $user->username ?>" type="text" name="username" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -51,24 +51,6 @@
                                     <option value="Admin" <?php if ($user->role == "Admin") {
                                                                 echo "selected";
                                                             } ?>>Admin</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <label for="" class="pull-right">Status</label>
-                            </div>
-                            <div class="col-md-9">
-                                <select name="is_aktif" class="form-control">
-                                    <option value="none">--Status--</option>
-                                    <option value="0" <?php if ($user->is_active == "0") {
-                                                            echo "selected";
-                                                        } ?>>Tidak Aktif</option>
-                                    <option value="1" <?php if ($user->is_active == "1") {
-                                                            echo "selected";
-                                                        } ?>>Aktif</option>
                                 </select>
                             </div>
                         </div>
@@ -103,7 +85,7 @@
                             </div>
                             <div class="col-md-9">
                                 <a href="<?= base_url($back) ?>" class="btn btn-warning"><i class="fa fa-arrow-left"></i> Kembali</a>
-                                <button type="submit" class="btn btn-primary">Tambah</button>
+                                <button type="submit" class="btn btn-primary">Simpan</button>
                             </div>
                         </div>
                     </div>

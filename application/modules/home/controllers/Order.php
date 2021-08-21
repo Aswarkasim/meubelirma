@@ -24,7 +24,7 @@ class Order extends CI_Controller
       $field = 'id_user';
     }
 
-    $order = $this->Crud_model->listingOneAll('tbl_order', $field, $id_user);
+    $order = $this->HM->listOrder($field, $id_user);
 
     $data = [
       'order'   => $order,
@@ -85,6 +85,7 @@ class Order extends CI_Controller
 
   function invoice($id_order)
   {
+    __is_boolean('tbl_order', 'id_order', $id_order, 'is_read', '1');
     $order = $this->Crud_model->listingOne('tbl_order', 'id_order', $id_order);
     $produk = $this->HM->listOrderFromKeranjang($id_order);
 

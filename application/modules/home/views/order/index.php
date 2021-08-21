@@ -8,11 +8,14 @@
       <th>Aksi</th>
     </thead>
     <tbody>
-      <?php $no = 1;
+      <?php $role = $this->session->userdata('role');
+      $no = 1;
       foreach ($order as $row) { ?>
-        <tr>
+        <tr class="<?php if (($row->is_read == 0) && $role == 'Pemasok') {
+                      echo 'bg-warning';
+                    } ?>">
           <td><?= $no++; ?></td>
-          <td><a href=""><?= $row->id_order; ?></a></td>
+          <td><a href="<?= base_url('home/order/invoice/' . $row->id_order); ?>"><?= $row->id_order; ?></a></td>
           <td><?= $row->status; ?></td>
           <td><a href="<?= base_url('home/order/invoice/' . $row->id_order); ?>" class="btn btn-primary badge badge-pill"><i class="fa fa-info-circle"></i> Detail</a></td>
         </tr>

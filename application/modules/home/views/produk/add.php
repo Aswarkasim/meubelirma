@@ -92,7 +92,7 @@
       <div class="col-md-9">
         <div class="form-group">
           <input type="file" class="form-control" name="gambar" placeholder="Gambar">
-          <small class="text-danger">* Hanya menerima format .pdf</small>
+          <small class="text-danger">* Hanya menerima format .jpg | .png</small>
         </div>
       </div>
     </div>

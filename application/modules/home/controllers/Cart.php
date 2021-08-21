@@ -41,8 +41,11 @@ class Cart extends CI_Controller
     $this->load->view('home/layout/wrapper', $data, FALSE);
   }
 
-  function addToCart($id_produk)
+  function addToCart($uri, $id_produk)
   {
+    $uri = $this->uri->segment(4);
+    // print_r($uri);
+    // die;
     $produk = $this->Crud_model->listingOne('tbl_produk', 'id_produk', $id_produk);
     $data = [
       'id_keranjang'    => random_string(),
@@ -53,7 +56,11 @@ class Cart extends CI_Controller
       'harga'           => $produk->harga
     ];
     $this->Crud_model->add('tbl_keranjang', $data);
-    redirect('home/produk');
+    if ($uri === 'detail') {
+      redirect('home/produk/detail/' . $id_produk);
+    } else {
+      redirect('home/produk');
+    }
   }
 
 
