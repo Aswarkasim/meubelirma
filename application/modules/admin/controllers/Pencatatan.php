@@ -14,7 +14,7 @@ class Pencatatan extends CI_Controller
   {
     $produk = $this->AM->listProduk();
 
-    $pencatatan = $this->Crud_model->listing('tbl_pencatatan');
+    $pencatatan = $this->Crud_model->listing('tbl_pencatatan', 'DESC');
 
     $konfigurasi = $this->Crud_model->listingOne('tbl_konfigurasi', 'id_konfigurasi', '1');
     $data = [

@@ -131,6 +131,7 @@ class Produk extends CI_Controller
             'deskripsi'   => $i->post('deskripsi'),
             'harga'   => $i->post('harga'),
             'stok'   => $i->post('stok'),
+            'type'      => 'Pemasok',
             'gambar'          => $config['upload_path'] . $upload_data['uploads']['file_name']
           ];
           $this->Crud_model->add('tbl_produk', $data);

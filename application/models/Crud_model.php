@@ -8,6 +8,7 @@ class Crud_model extends CI_Model
     {
         $query = $this->db->select('*')
             ->from($table)
+            ->order_by('date_created', $order)
             ->get();
         return $query->result();
     }

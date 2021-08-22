@@ -22,13 +22,15 @@ $uri = $this->uri->segment(3)
         <?= 'Halo ' . $this->session->userdata('username') . ' selamat datang di akun ' . $this->session->userdata('role') . ' !😊';; ?>
       </p>
 
+      <?php if ($this->session->userdata('role') === 'Pemasok') { ?>
+        <a href="<?= base_url('home/produk/add'); ?>" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Produk</a>
+      <?php } ?>
+
       <?php
       if (count($produk) <= 0) { ?>
         <p class="alert alert-info"><i class="fa fa-inbox fa-2x"></i> TIdak ada produk</p>
       <?php } else { ?>
-        <?php if ($this->session->userdata('role') === 'Pemasok') { ?>
-          <a href="<?= base_url('home/produk/add'); ?>" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Produk</a>
-        <?php } ?>
+
         <div class="row">
           <?php foreach ($produk as $row) {
             $cekKeranjang = $this->HM->cekKeranjang($id_user, $row->id_produk);
